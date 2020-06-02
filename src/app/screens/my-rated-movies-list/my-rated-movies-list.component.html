@@ -1,0 +1,39 @@
+<div class="main-div">
+    <div class="container">
+        <h4 class="mt-4 mb-3">
+            <i class="font">My Ratings</i>
+        </h4>
+        <div class="navs">
+            <ul class="nav nav-pills">
+                <li class="nav-item" (click)="myRatedData('movies')">
+                    <a class="nav-link" [ngClass]="{'active': defaultTab == 'movies'}">Movies</a>
+                </li>
+                <li class="nav-item" (click)="myRatedData('tv')">
+                    <a class="nav-link" [ngClass]="{'active': defaultTab == 'tv'}">TV Shows</a>
+                </li>
+            </ul>
+        </div>
+        <ng-container *ngIf="searchObserable | async">
+            <div class="row-div" *ngIf="myRatingObj?.data.length > 0">
+                <div class="column-div" *ngFor="let data of myRatingObj?.data">
+                    <app-movies-card [cardData]='data'></app-movies-card>
+                </div>
+            </div>
+            <div class="center-class" *ngIf="myRatingObj?.data.length > 0">
+                <div style="margin-top:30px">
+                    <ngb-pagination [collectionSize]="myRatingObj?.count" [pageSize]="20" [(page)]="page" [maxSize]="7" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #loadingOrErrorRequest>
+            <ng-container *ngIf="errorObject; else loading">
+                <h5 class="error-data">Some Error Occured</h5>
+            </ng-container>
+            <ng-template #loading>
+                <div style="width:100%; height:200px;">
+                    <app-loader></app-loader>
+                </div>
+            </ng-template>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="isMenuShow">
+        <mat-toolbar class="side-nav-tool">
+            <div class="side-menu-container">
+                <div class="image-div row">
+                    <div class="col-xs-6" style="margin-left:20px">
+                        <img class="image-class" src="../../assets/user.png">
+                    </div>
+                    <div class="col-xs-2" style="color:white; margin-top: 35px; margin-left: 15px"> Welcome</div>
+                </div>
+            </div>
+        </mat-toolbar>
+        <mat-nav-list>
+            <ng-container *ngIf="userDetails?.islogin; else login">
+                <a mat-list-item (click)="navigateToMyRating()">My Ratings</a>
+                <a mat-list-item (click)="logout()">Logout</a>
+            </ng-container>
+            <ng-template #login>
+                <a mat-list-item (click)="grantAccess()" *ngIf="!token">Grant Access</a>
+                <a mat-list-item (click)="loginModal()" *ngIf="token">Login</a>
+            </ng-template>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="container-div">
+        <mat-toolbar class="mat-elevation-z8 padding-class" color="primary">
+            <div class="menu-container">
+                <img class="logo" src="assets/logo.png" alt="logo" (click)="navigate()" />
+                <ng-container *ngIf="!(isHandset$ | async)">
+                    <span class="spacing"></span>
+                    <button mat-button [matMenuTriggerFor]="appMenu" *ngIf="userDetails?.islogin; else login" class="back-ground">
+                        Hi {{userDetails.email}} <mat-icon>arrow_drop_down</mat-icon>
+                    </button>
+                    <mat-menu #appMenu="matMenu" xPosition="before">
+                        <button mat-menu-item (click)="navigateToMyRating()">My Ratings</button>
+                        <button mat-menu-item (click)="logout()">Logout</button>
+                    </mat-menu>
+                    <ng-template #login>
+                        <button mat-button class="login" (click)="grantAccess()" class="back-ground" *ngIf="!token">
+                            Grant Access
+                        </button>
+                        <button mat-button class="login" (click)="loginModal()" class="back-ground" *ngIf="token">
+                                Login
+                            </button>
+                    </ng-template>
+                </ng-container>
+            </div>
+            <button type="button" class="margin-class" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle();toggleMenu()" *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

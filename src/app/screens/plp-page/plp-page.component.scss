@@ -1,0 +1,70 @@
+@import "../../../variable.scss";
+.container-div {
+    min-height: 100vh;
+    background-color: $background-color-light;
+    margin-top: $margin-top;
+    .body-div {
+        padding-top: 17vh;
+        .list-group-item {
+            background-color: $background-dark;
+            color: white;
+            .span-class {
+                background-color: gray;
+                padding: 5px;
+                float: right;
+                border-radius: 10px;
+            }
+        }
+        .search {
+            height: 11vh;
+            background-color: $primary-color;
+            font-size: 1.3rem;
+        }
+        .card {
+            margin-bottom: 40px;
+            border-radius: 20px;
+            .row-class {
+                display: flex;
+                .col-class-image {
+                    width: 19%;
+                    .img-fluid {
+                        border-top-left-radius: 20px;
+                        border-bottom-left-radius: 20px;
+                    }
+                }
+                .col-desc {
+                    width: 81%;
+                }
+            }
+        }
+        .center-class {
+            text-align: center;
+        }
+    }
+}
+
+.btn .btn-primary-class:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.center-class {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        .row-class {
+            max-height: 300px !important;
+            .col-class-image {
+                width: 50% !important;
+            }
+            .col-desc {
+                width: 50% !important;
+            }
+        }
+    }
+}

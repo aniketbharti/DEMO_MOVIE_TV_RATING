@@ -1,0 +1,33 @@
+@import '../../../variable.scss';
+p {
+    white-space: pre;
+    color: #fff
+}
+
+h5 {
+    text-align: left !important;
+    color: #fff
+}
+
+.container-class {
+    padding: 24px;
+}
+
+.commonBtn {
+    margin-bottom: 18px;
+    background-color: $primary-color;
+    color: #fff;
+    height: 40px;
+    border-radius: 15px;
+    min-width: 65px;
+}
+
+.commonBtn2 {
+    margin-bottom: 18px;
+    background-color: white;
+    color: $primary-color;
+    height: 40px;
+    border-radius: 15px;
+    min-width: 65px;
+    border: 1px solid $primary-color;
+}

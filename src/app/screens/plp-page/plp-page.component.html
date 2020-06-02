@@ -1,0 +1,52 @@
+<div class="container-div">
+    <div class="body-div">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4">
+                    <div class="list-group">
+                        <a class="list-group-item search">Search Results</a>
+                        <a class="list-group-item" (click)="search('multi',1,true)">All 
+                            <span *ngIf="countObject?.multi" class="span-class">
+                                {{countObject?.multi}} 
+                            </span>
+                        </a>
+                        <a class="list-group-item" (click)="search('movie',1,true)">Movies  
+                            <span *ngIf="countObject?.movie" class="span-class">
+                                {{countObject?.movie}} 
+                            </span></a>
+                        <a class="list-group-item" (click)="search('tv',1,true)">TV Shows  
+                            <span *ngIf="countObject?.tv" class="span-class">{{countObject?.tv}} </span>
+                        </a>
+                        <a class="list-group-item" (click)="search('collection',1,true)">Collections  
+                            <span *ngIf="countObject?.collection" class="span-class">
+                                {{countObject?.collection}} 
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-9 mb-4">
+                    <h5 style="color:white; margin:10px"><i>Showing Results for {{searchText}}</i></h5>
+                    <div class="card" *ngFor="let res of displayData?.data" (click)="navigationToPDP(res.id, res.media_type)">
+                        <div class="row-class" [title]="res.name">
+                            <div class="col-class-image">
+                                <img alt="products" class="img-fluid" [src]="res?.poster_path">
+                            </div>
+                            <div class="col-desc">
+                                <div class="card-body">
+                                    <h4>{{res.name}}</h4>
+                                    <p>{{res.release_date}}</p>
+                                    <p>{{res.overview | trimLength: 250}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center-class container">
+                        <div>
+                            <ngb-pagination [collectionSize]="displayData?.count" [pageSize]="20" [(page)]="page" [maxSize]="3" [rotate]="true" [boundaryLinks]="true" (pageChange)="search(currentPage, page, false )"></ngb-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

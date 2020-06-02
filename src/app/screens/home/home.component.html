@@ -1,0 +1,60 @@
+<div class="home-div">
+    <div class="search-div">
+        <div class="overlay-div">
+            <div class="search-content">
+                <div class="row-class">
+                    <div class="col-class">
+                        <mat-form-field class="search-form-control-div" appearance="outline">
+                            <input type="text" matInput [formControl]="autoCompleteControl" (input)="changeSearchText($event.target.value)" (keydown.enter)="navigationToPLP()" class="field" placeholder="Search Movies, TV Shows" [matAutocomplete]="auto" (keydown.enter)="navigationToPLP()">
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of httpGetData$ | async" [value]="option?.name" (click)="navigationToPDP(option?.id,option?.media_type)">
+                                    {{option?.name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="button-div">
+                        <button type="submit" class="button-class" (click)="navigationToPLP()"><i class="fa fa-search icon"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-div">
+        <ng-container *ngIf="popularArray.length > 0">
+            <app-corousel-grid [moviesList]="popularArray">
+                <div>
+                    <h5 class="msg-class">What's Popular</h5>
+                </div>
+                <div>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item" (click)="getPopularItemsMethod('movie')">
+                            <a class="nav-link" [ngClass]="{'active': popularItem == 'movie'}">Movie</a>
+                        </li>
+                        <li class="nav-item" (click)="getPopularItemsMethod('tv')">
+                            <a class="nav-link" [ngClass]="{'active': popularItem == 'tv'}">TV</a>
+                        </li>
+                    </ul>
+                </div>
+            </app-corousel-grid>
+        </ng-container>
+        <ng-container *ngIf="trendingArray.length > 0">
+            <app-corousel-grid [moviesList]="trendingArray">
+                <div>
+                    <h5 class="msg-class">Trending</h5>
+                </div>
+                <div>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item" (click)="getTrendingProducts('day')">
+                            <a class="nav-link" [ngClass]="{'active': trendingValidity == 'day'}">Today</a>
+                        </li>
+                        <li class="nav-item" (click)="getTrendingProducts('week')">
+                            <a class="nav-link" [ngClass]="{'active': trendingValidity == 'week'}">This Week</a>
+                        </li>
+                    </ul>
+                </div>
+            </app-corousel-grid>
+        </ng-container>
+
+    </div>
+</div>

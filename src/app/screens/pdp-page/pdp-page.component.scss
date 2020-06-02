@@ -1,0 +1,68 @@
+@import '../../../variable.scss';
+.pdp-div {
+    background-color: $background-color-light;
+    .pdp-content {
+        margin-top: $margin-top;
+        min-height: 100vh;
+    }
+    .main-container {
+        width: 100%;
+        height: inherit;
+        background-repeat: no-repeat;
+        .data-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: inherit;
+            padding-top: 20vh;
+            .content {
+                margin-top: 30px;
+                color: white;
+                .span-class {
+                    font-size: 25px;
+                }
+                ul {
+                    list-style-type: circle;
+                }
+                li {
+                    display: inline;
+                    margin-right: 20px;
+                    font-size: 18px;
+                }
+                ul li::before {
+                    content: "\2022";
+                    color: white;
+                    font-weight: bold;
+                    display: inline-block;
+                    margin-right: 2px
+                }
+            }
+        }
+    }
+    .navs {
+        margin-top: 25px;
+    }
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: $primary-color;
+    border: 0px;
+    min-width: 50px;
+}
+
+.nav-pills {
+    border: 3px solid white;
+    border-radius: 1.5rem;
+    margin-left: 20px;
+}
+
+.nav-pills .nav-link {
+    border-radius: 1.5rem;
+    color: white
+}
+
+.btn-primary-class {
+    background-color: $primary-color;
+    border: 0px;
+    width: 80px;
+    color: white;
+}

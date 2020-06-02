@@ -1,0 +1,113 @@
+@import '../../../variable.scss';
+.home-div {
+    background-color: #141414;
+    .search-div {
+        background: url("../../../assets/search-div.jpg");
+        width: 100%;
+        height: 85vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-top: $margin-top;
+        .overlay-div {
+            width: 100%;
+            height: 85vh;
+            background-color: $background-light-overylay;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            .search-content {
+                width: 50%;
+                text-align: center;
+                .row-class {
+                    display: flex;
+                    .col-class {
+                        width: 90%;
+                        .search-form-control-div {
+                            width: 100%;
+                            input.mat-input-element {
+                                color: white;
+                                font-size: 23px;
+                                margin-left: 7px;
+                                margin-right: 7px;
+                            }
+                            .mat-form-field-wrapper {
+                                padding-bottom: 0px;
+                            }
+                        }
+                    }
+                    .button-div {
+                        color: white;
+                        border: 5px solid white;
+                        border-left: 0px;
+                        width: 10%;
+                        max-height: 79px;
+                        .button-class {
+                            width: 100%;
+                            height: 100%;
+                            background-color: $primary-color;
+                            margin: 0px;
+                            padding: 0px;
+                            border: 0px;
+                            .icon {
+                                font-size: 1.6rem;
+                                color: white
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .container-div {
+        position: relative;
+        margin-left: 5vw;
+        margin-right: 5vw;
+        margin-top: 5vw;
+    }
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: transparent;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: transparent;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+    border: 5px solid white;
+}
+
+.field::placeholder {
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .search-content {
+        width: 80% !important;
+        .col-class {
+            width: 80% !important;
+        }
+        .button-div {
+            width: 20% !important;
+        }
+    }
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: $primary-color;
+    border: 0px;
+}
+
+.nav-pills {
+    border: 3px solid white;
+    border-radius: 1.5rem;
+    margin-left: 20px;
+}
+
+.nav-pills .nav-link {
+    border-radius: 1.5rem;
+    color: white
+}

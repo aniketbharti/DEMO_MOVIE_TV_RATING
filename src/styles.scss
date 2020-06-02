@@ -1,0 +1,106 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+@import './variable.scss';
+.page-item.active .page-link {
+    background-color: $primary-color !important;
+    border: 0px
+}
+
+.page-link {
+    background-color: $primary-color;
+    color: white;
+    border: 0px
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.movesList .slick-next:before {
+    left: 0;
+    content: '\f054';
+}
+
+.movesList .slick-prev:before {
+    right: 7px;
+    content: '\f053';
+}
+
+.movesList .slick-arrow.slick-disabled {
+    display: none !important;
+}
+
+.movesList .slick-prev {
+    height: 78px;
+    width: 36px;
+}
+
+.movesList .slick-prev {
+    border-bottom-right-radius: 360px;
+    border-top-right-radius: 360px;
+    left: 14px;
+    background: #c4c6c7 !important;
+    padding: 0.6rem;
+    z-index: 9;
+}
+
+.movesList .slick-next {
+    height: 78px;
+    width: 36px;
+    right: 12px;
+}
+
+.movesList .slick-next {
+    border-bottom-left-radius: 360px;
+    border-top-left-radius: 360px;
+    background: #c4c6c7 !important;
+    padding: 0.6rem;
+}
+
+.movesList .slick-next:before,
+.movesList .slick-prev:before {
+    position: relative;
+    font: normal normal normal 18px/1 FontAwesome;
+    color: #000;
+}
+
+.mat-dialog-container {
+    padding: 0px !important;
+    background-color: #000
+}
+
+.mat-accent .mat-slider-thumb,
+.mat-accent .mat-slider-thumb-label,
+.mat-accent .mat-slider-track-fill {
+    background-color: $primary-color;
+}
+
+.mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb,
+.mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb-label {
+    background-color: $primary-color;
+}
+
+.msg-class {
+    color: white;
+    margin: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}

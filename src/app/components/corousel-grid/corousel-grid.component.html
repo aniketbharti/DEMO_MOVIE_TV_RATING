@@ -1,0 +1,14 @@
+<section class="row">
+    <div class="container-fluid container-padding">
+        <div class="col-12 mt-3">
+            <div class="row-div">
+                <ng-content></ng-content>
+            </div>
+            <ngx-slick-carousel class="row trendingWrap movesList pb-3" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)">
+                <div ngxSlickItem *ngFor="let mv of moviesList" class="col-12 col-sm-6 col-lg-3 productListingWrap">
+                    <app-movies-card [cardData]="mv"></app-movies-card>
+                </div>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+</section>

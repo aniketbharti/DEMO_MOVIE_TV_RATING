@@ -1,0 +1,9 @@
+@import '../../../variable.scss';
+.footer-div {
+    background-color: $background-dark;
+    .main-div {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: inherit;
+        height: inherit;
+    }
+}

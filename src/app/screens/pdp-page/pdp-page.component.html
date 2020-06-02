@@ -1,0 +1,71 @@
+<div class="pdp-div">
+    <div class="pdp-content">
+        <div class="main-container" [ngStyle]="{'background-image': getUrl()}" *ngIf="response">
+            <div class="data-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img alt="products" class="img-fluid" [src]="response?.poster_path">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="content">
+                                <h1>
+                                    <i>{{response?.name_data}}</i>
+                                    <span class="span-class" *ngIf="response?.release_date">
+                                        ({{response?.release_date | slice:0:4}})
+                                    </span>
+                                </h1>
+                                <ul>
+                                    <li *ngIf="response?.release_date">{{response?.release_date}}</li>
+                                    <li *ngIf="response?.genres.length > 0">{{getGenres(response?.genres)}}</li>
+                                    <li *ngIf="response?.runtime > 0">{{response?.runtime}} mins</li>
+                                </ul>
+                                <ng-container *ngIf="response?.overview">
+                                    <h3><i>Overview</i></h3>
+                                    <p>{{response?.overview}}</p>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" *ngIf="media_type=='tv' || media_type == 'movie'">
+            <div class="navs">
+                <ul class="nav nav-pills">
+                    <li class="nav-item" (click)="defaultTab = 'rating'">
+                        <a class="nav-link" [ngClass]="{'active': defaultTab == 'rating'}">Ratings</a>
+                    </li>
+                    <!-- <li class="nav-item" (click)="defaultTab = 'video'">
+                        <a class="nav-link" [ngClass]="{'active': defaultTab == 'video'}">Videos</a>
+                    </li> -->
+                </ul>
+            </div>
+
+            <form [formGroup]="ratingForm" style="margin-top:25px" *ngIf="defaultTab == 'rating'">
+                <div class="row" style="margin-left:20px">
+                    <div class="col-5">
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Enter your rating for this movie" formControlName="rating" [ngClass]="{ 'is-invalid': f.rating.touched && f.rating.errors }">
+                            <div *ngIf="f.rating.touched && f.rating.errors" class="invalid-feedback">
+                                <div *ngIf="f.rating.errors?.required">*Email ID is required</div>
+                                <div *ngIf="f.rating.hasError('min')">*Minimum rating is 0.1</div>
+                                <div *ngIf="f.rating.hasError('max')">*Maximum rating is 10</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="btn btn-primary-class" [value]="buttonText" (click)="formValidSubmit()">
+                    </div>
+                </div>
+            </form>
+            <ng-container *ngIf="recommendeArray.length > 0">
+                <app-corousel-grid [moviesList]="recommendeArray">
+                    <div>
+                        <h5 class="msg-class">Recommendations</h5>
+                    </div>
+                </app-corousel-grid>
+            </ng-container>
+        </div>
+    </div>
+</div>

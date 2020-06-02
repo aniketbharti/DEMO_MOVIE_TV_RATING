@@ -1,0 +1,65 @@
+@import '../../../variable.scss';
+.main-div {
+    min-height: 115vh;
+    background-color: $background-color-light;
+    margin-top: $margin-top;
+    .container {
+        padding-top: -$margin-top;
+        .font {
+            color: white
+        }
+        .navs {
+            margin-top: 20px;
+        }
+        .nav-pills .nav-link.active,
+        .nav-pills .show>.nav-link {
+            background-color: $primary-color;
+            border: 0px;
+            min-width: 50px;
+        }
+        .nav-pills {
+            border: 3px solid white;
+            border-radius: 1.5rem;
+            margin-left: 20px;
+        }
+        .nav-pills .nav-link {
+            border-radius: 1.5rem;
+            color: white
+        }
+        .btn-primary-class {
+            background-color: $primary-color;
+            border: 0px;
+            width: 80px;
+            color: white;
+        }
+    }
+}
+
+@media (min-width: 980px) {
+    .row-div {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: left;
+        justify-content: left;
+    }
+    .row-div>.column-div {
+        flex-grow: 1;
+        flex: 0 0 20%;
+        height: inherit;
+    }
+}
+
+.center-class {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.column-div {
+    margin: 1vw;
+}
+
+.row-div {
+    margin-top: 10px;
+}

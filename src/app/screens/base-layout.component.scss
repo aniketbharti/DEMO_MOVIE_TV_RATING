@@ -1,0 +1,104 @@
+@import '../../variable.scss';
+.sidenav-container {
+    height: 100%;
+}
+
+.sidenav {
+    width: 250px;
+}
+
+.logo {
+    width: 94px;
+    height: 105px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    height: 75px;
+    padding: 0px;
+}
+
+.menu-container {
+    padding-left: 15px;
+}
+
+.side-menu-container {
+    width: inherit;
+    height: 180px;
+    background: $background-dark;
+    overflow: hidden;
+}
+
+.margin-class {
+    margin-left: 45vw
+}
+
+.padding-class {
+    padding: 16px
+}
+
+.side-nav-tool {
+    height: 180px;
+}
+
+.spacing {
+    padding-left: 60vw;
+}
+
+.image-div {
+    margin-top: 38px;
+}
+
+.image-class {
+    height: 100px;
+    width: 100px;
+    margin-left: 16px;
+    border-radius: 90px;
+    border: 4px solid white;
+}
+
+.usermsg {
+    margin-top: 20px;
+    color: white;
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container-div {
+    .mat-toolbar.mat-primary {
+        position: inherit;
+        top: 0;
+        z-index: 1;
+        background-color: $background-light-overylay;
+    }
+}
+
+.main-spacing {
+    padding-left: 40px;
+}
+
+.main-spacing-left {
+    padding-left: 70px
+}
+
+button.mat-menu-item {
+    outline: none;
+}
+
+.mat-menu-item {
+    min-width: 200px;
+}
+
+.back-ground {
+    border: 1px solid white;
+    margin-left: 10px
+}
+
+.mat-drawer-inner-container {
+    background-color: $background-light-overylay;
+}
