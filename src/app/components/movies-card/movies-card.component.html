@@ -1,9 +1,11 @@
-<div class="w-100 d-flex flex-wrap productsDiv row no-gutters" [title]="cardData?.original_title" (click)="navigationToPDP(cardData?.id, cardData?.media_type)">
+<div class="w-100 d-flex flex-wrap productsDiv row no-gutters" [ngClass]="{'display-pattern': cardData?.hidden }" [title]="cardData?.original_title" (click)="navigationToPDP(cardData?.id, cardData?.media_type)">
     <div class="image-class">
         <img alt="products" class="img-fluid" [src]="cardData?.poster_path">
     </div>
     <div class="content">
         <p>{{cardData?.original_title | trimLength}}</p>
-        <br *ngIf="cardData?.original_title.length < 35" />
+        <ng-container *ngIf="cardData?.original_title">
+            <br *ngIf="cardData?.original_title?.length < 35" />
+        </ng-container>
     </div>
 </div>

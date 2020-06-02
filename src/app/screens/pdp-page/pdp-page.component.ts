@@ -1,9 +1,10 @@
+import { UserDataService } from './../../services/user.data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesDbService } from './../../services/movies-db.service';
 import { Component, OnInit } from '@angular/core';
 import { imageURL } from 'src/environments/environment.prod';
-import { imageURLHD } from 'src/environments/environment';
+import { imageURLHD, placeholderImage } from 'src/environments/environment';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
@@ -20,11 +21,11 @@ export class PdpPageComponent implements OnInit {
   ratingForm: FormGroup;
   buttonText: string = 'Submit';
   constructor(private moviesDbService: MoviesDbService, private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder, private _snackBar: MatSnackBar
+    private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private userDataService: UserDataService
   ) { }
 
   ngOnInit() {
-    
+
     this.activatedRoute.queryParams.subscribe((res) => {
       this.id = this.activatedRoute.snapshot.queryParams.id;
       this.media_type = this.activatedRoute.snapshot.queryParams.media_type;
@@ -35,9 +36,22 @@ export class PdpPageComponent implements OnInit {
       this.ratingForm = this.formBuilder.group({
         rating: [null, [Validators.required, Validators.min(0.1), Validators.max(10)]],
       });
+      let check = this.checkLogin()
+      if (check) {
+        this.checkState(this.id, this.media_type)
+      }
     })
-    this.checkState(this.id,this.media_type)
 
+  }
+
+  checkLogin() {
+    let data = this.userDataService.getUserDetails()
+    if (data) {
+      if (data.islogin) {
+        return true
+      }
+    }
+    return false;
   }
 
   getMoviesDetails() {
@@ -77,34 +91,38 @@ export class PdpPageComponent implements OnInit {
           id: element.id,
           media_type: this.media_type,
           original_title: element.title ? element.title : element.original_title ? element.original_title : element.name,
-          poster_path: imageURL + element.poster_path,
+          poster_path: element.poster_path ? imageURL + element.poster_path : placeholderImage,
           vote_average: element.vote_average
         }
         tempArr.push(data)
       });
-      console.log(tempArr, "pop")
-
       this.recommendeArray = tempArr;
     })
 
   }
 
   formValidSubmit() {
+    let check = this.checkLogin()
     if (this.ratingForm.valid) {
-      let body = {
-        value: this.ratingForm.get('rating').value
-      }
-      this.moviesDbService.sendRating(this.media_type, this.id, body).subscribe((res) => {
-        if("status_message" in res){
-          this.snackBarFunc('Rating Submitted Successfully')
-        }else{
-          this.snackBarFunc('Some Error Occured')
+      if (check) {
+        let body = {
+          value: this.ratingForm.get('rating').value
         }
-      })
+        this.moviesDbService.sendRating(this.media_type, this.id, body).subscribe((res) => {
+          if ("status_message" in res) {
+            this.snackBarFunc('Rating Submitted Successfully')
+          } else {
+            this.snackBarFunc('Some Error Occured')
+          }
+        })
+      } else {
+        this.snackBarFunc('Please Login to submit your ratings')
+      }
     } else {
       this.ratingForm.markAllAsTouched()
     }
   }
+
 
   snackBarFunc(message) {
     this._snackBar.open(message, '', {
@@ -113,10 +131,10 @@ export class PdpPageComponent implements OnInit {
     });
   }
 
-  checkState(id, media){
-    this.moviesDbService.getReviewState(id,media).subscribe((res)=>{
-      if("rated" in res){
-        if(!(typeof(res['rated']) == "boolean")){
+  checkState(id, media) {
+    this.moviesDbService.getReviewState(id, media).subscribe((res) => {
+      if ("rated" in res) {
+        if (!(typeof (res['rated']) == "boolean")) {
           this.ratingForm.get('rating').patchValue(res.rated.value)
           this.buttonText = 'Update'
         }

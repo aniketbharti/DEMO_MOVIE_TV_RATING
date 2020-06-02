@@ -68,3 +68,7 @@
         }
     }
 }
+
+.list-group-item.active {
+    border-color: $primary-color;
+}

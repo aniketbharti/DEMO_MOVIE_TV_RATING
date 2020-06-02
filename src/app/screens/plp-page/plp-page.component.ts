@@ -2,6 +2,7 @@ import { imageURL } from './../../../environments/environment.prod';
 import { MoviesDbService } from './../../services/movies-db.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { placeholderImage } from 'src/environments/environment';
 
 
 @Component({
@@ -56,7 +57,7 @@ export class PlpPageComponent implements OnInit {
                 overview: element.overview,
                 release_date: element.release_date,
                 media_type: element.media_type,
-                poster_path: imageURL + element.poster_path
+                poster_path: element.poster_path ? imageURL + element.poster_path : placeholderImage
               }
               tempObject.push(obj)
             }
@@ -67,7 +68,7 @@ export class PlpPageComponent implements OnInit {
               overview: element.overview,
               release_date: element.release_date,
               media_type: field,
-              poster_path: imageURL + element.poster_path
+              poster_path: element.poster_path ? imageURL + element.poster_path : placeholderImage
             }
             tempObject.push(obj)
           }

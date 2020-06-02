@@ -5,19 +5,20 @@
                 <div class="col-lg-3 mb-4">
                     <div class="list-group">
                         <a class="list-group-item search">Search Results</a>
-                        <a class="list-group-item" (click)="search('multi',1,true)">All 
+                        <a class="list-group-item" (click)="search('multi',1,true)" [ngClass]="{'active': currentPage == 'multi'}">All 
                             <span *ngIf="countObject?.multi" class="span-class">
                                 {{countObject?.multi}} 
                             </span>
                         </a>
-                        <a class="list-group-item" (click)="search('movie',1,true)">Movies  
+                        <a class="list-group-item" (click)="search('movie',1,true)" [ngClass]="{'active': currentPage == 'movie'}">Movies  
                             <span *ngIf="countObject?.movie" class="span-class">
                                 {{countObject?.movie}} 
                             </span></a>
-                        <a class="list-group-item" (click)="search('tv',1,true)">TV Shows  
+                        <a class="list-group-item" (click)="search('tv',1,true)" [ngClass]="{'active': currentPage == 'tv'}">TV Shows  
                             <span *ngIf="countObject?.tv" class="span-class">{{countObject?.tv}} </span>
                         </a>
-                        <a class="list-group-item" (click)="search('collection',1,true)">Collections  
+                        <a class="list-group-item" (click)="search('collection',1,true)" [ngClass]="{'active': currentPage == 'collection'}">
+                            Collections  
                             <span *ngIf="countObject?.collection" class="span-class">
                                 {{countObject?.collection}} 
                             </span>

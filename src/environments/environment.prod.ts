@@ -1,5 +1,6 @@
 const domainURL = "https://api.themoviedb.org/3/";
 const apiKey = 'cd63cd689d23720b0bdbe5ede4f0c2ec';
+export const placeholderImage = 'https://bulma.io/images/placeholders/480x640.png'
 
 const appName = {
   trendingApp: 'trending/{parameter}?api_key=',

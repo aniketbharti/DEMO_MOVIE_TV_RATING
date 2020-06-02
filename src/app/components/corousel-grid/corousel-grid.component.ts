@@ -15,7 +15,21 @@ export class CorouselGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.moviesList)
+    if (this.moviesList.length < 7) {
+      let length = this.moviesList.length;
+      for (let i = 0; i < 5 - length; i++) {
+        let data = {
+          adult: null,
+          id: null,
+          media_type: null,
+          original_title: null,
+          poster_path: null,
+          vote_average: null,
+          hidden: true
+        }
+        this.moviesList.push(data)
+      }
+    }
   }
 
 

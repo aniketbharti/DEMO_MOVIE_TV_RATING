@@ -1,5 +1,5 @@
 import { UserDataService } from './../../services/user.data.service';
-import { imageURL } from './../../../environments/environment';
+import { imageURL, placeholderImage } from './../../../environments/environment';
 import { MoviesDbService } from './../../services/movies-db.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
           id: element.id,
           media_type: element.media_type,
           original_title: element.title ? element.title : element.original_title ? element.original_title : element.name,
-          poster_path: imageURL + element.poster_path,
+          poster_path: element.poster_path ? imageURL + element.poster_path : placeholderImage,
           vote_average: element.vote_average
         }
         tempArr.push(data)
@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
           id: element.id,
           media_type: this.popularItem,
           original_title: element.title ? element.title : element.original_title ? element.original_title : element.name,
-          poster_path: imageURL + element.poster_path,
+          poster_path: element.poster_path ? imageURL + element.poster_path : placeholderImage,
           vote_average: element.vote_average
         }
         tempArr.push(data)
