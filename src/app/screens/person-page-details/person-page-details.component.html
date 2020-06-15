@@ -1,21 +1,24 @@
-<div class="container-class">
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <div class="col-3">
-                    <img [src]="getImagePath()">
-                </div>
-                <div class="col-9">
-                    <p>{{user?.name}}</p>
-                    <p><span *ngFor="let data of user?.also_known_as"> {{data}} </span></p>
-                    <p>{{user?.biography}}</p>
-                    <p>{{user?.birthday}}</p>
-
+<div class="container-div">
+    <div class="body-div">
+        <div class="container">
+            <div class="card">
+                <div class="card-body" *ngIf="obserVableData | async">
+                    <div class="row">
+                        <div class="col-3">
+                            <img [src]="getImagePath()" class="img-fluid">
+                        </div>
+                        <div class="col-9">
+                            <h3><i>{{user?.name}}</i></h3>
+                            <p class="font-class"><i>{{user?.birthday}} - {{user?.deathday || 'PRESENT'}}</i></p>
+                            <p><span *ngIf="user?.also_known_as.length > 0">Known as :</span><span *ngFor="let data of user?.also_known_as"> {{data}} </span></p>
+                            <p class="biography-class">{{user?.biography}}</p>
+                            <span *ngIf="user?.homepage">Website : <a [href]="user?.homepage" target="_blank">{{user?.homepage}}</a></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 

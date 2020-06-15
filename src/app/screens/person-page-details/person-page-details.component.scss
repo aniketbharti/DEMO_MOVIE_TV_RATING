@@ -1,6 +1,26 @@
-@import '../../../variable.scss';
-.container-class {
-    width: 100%;
-    height: 100vh;
+@import "../../../variable.scss";
+.container-div {
+    min-height: 100vh;
     background-color: $background-color-light;
+    margin-top: $margin-top;
+    .body-div {
+        padding-top: -$margin-top;
+    }
+    .container {
+        padding: 20px;
+        .img-fluid {
+            margin: 0px;
+            width: 100%;
+            height: inherit;
+            padding: 0px;
+        }
+        .font-class {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .biography-class {
+            font-style: italic;
+            text-align: justify
+        }
+    }
 }

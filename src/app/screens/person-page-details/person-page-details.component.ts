@@ -2,6 +2,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MoviesDbService } from './../../services/movies-db.service';
 import { Component, OnInit } from '@angular/core';
 import { imageURL, placeholderImage } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-person-page-details',
@@ -11,19 +13,23 @@ import { imageURL, placeholderImage } from 'src/environments/environment';
 export class PersonPageDetailsComponent implements OnInit {
   id: any;
   user: any;
+  obserVableData: Observable<any>;
 
-  constructor(private movieDbService: MoviesDbService, private activatedRoute:ActivatedRoute) { }
+  constructor(private movieDbService: MoviesDbService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.queryParams.id;
-    this.movieDbService.getPeopleDetail(this.id).subscribe((res)=>{
+    this.obserVableData = this.movieDbService.getPeopleDetail(this.id).pipe(tap((res) => {
       this.user = res
-    })
+    }))
   }
 
 
-  getImagePath(){
-    return this.user.profile_path ? imageURL + this.user.profile_path : placeholderImage
+  getImagePath() {
+    if ("profile_path" in this.user) {
+      return this.user.profile_path ? imageURL + this.user.profile_path : placeholderImage
+    }
+    return placeholderImage
   }
 
 }
