@@ -1,3 +1,4 @@
+import { PersonPageDetailsComponent } from './screens/person-page-details/person-page-details.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BaseLayoutComponent } from './screens/base-layout.component';
@@ -25,7 +26,13 @@ const routes: Routes = [
       },
       {
         path: 'my-rated', component: MyRatedMoviesListComponent, canActivate: [AuthGuard]
-      }
+      },
+      {
+        path: 'person-details', component: PersonPageDetailsComponent
+      },
+      { 
+        path: '**', redirectTo: 'home', pathMatch: 'full' 
+      } 
     ]
   }
 ];

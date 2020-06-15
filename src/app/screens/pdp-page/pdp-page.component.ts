@@ -1,6 +1,6 @@
 import { UserDataService } from './../../services/user.data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesDbService } from './../../services/movies-db.service';
 import { Component, OnInit } from '@angular/core';
 import { imageURL } from 'src/environments/environment.prod';
@@ -20,7 +20,10 @@ export class PdpPageComponent implements OnInit {
   defaultTab = 'rating'
   ratingForm: FormGroup;
   buttonText: string = 'Submit';
+  createdBy = [];
+
   constructor(private moviesDbService: MoviesDbService, private activatedRoute: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private userDataService: UserDataService
   ) { }
 
@@ -29,6 +32,9 @@ export class PdpPageComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((res) => {
       this.id = this.activatedRoute.snapshot.queryParams.id;
       this.media_type = this.activatedRoute.snapshot.queryParams.media_type;
+      if (!(this.id && this.media_type)) {
+        this.router.navigate([''])
+      }
       this.getMoviesDetails();
       if (this.media_type == 'tv' || this.media_type == 'movie') {
         this.getRecommended()
@@ -63,8 +69,23 @@ export class PdpPageComponent implements OnInit {
       res['poster_path'] = imageURL + res['poster_path']
       res['name_data'] = res.title ? res.title : res.original_title ? res.original_title : res.name,
         this.response = res;
+      if ("created_by" in res) {
+        res.created_by.forEach(element => {
+          let data = {
+            original_title: element.name,
+            poster_path:element.profile_path ? imageURL + element.profile_path : placeholderImage,
+            personPageNavigation: true,
+            id: element.id
+          }
+          this.createdBy.push(data)
+        });
+      }
     })
   }
+
+  // https://image.tmdb.org/t/p/w138_and_h175_face/fmRHI0ovny7lk27TzejA47or802.jpg" sr
+
+  // https://image.tmdb.org/t/p/w220_and_h330_faceundefined
 
   getUrl() {
     return "url('" + this.response['backdrop_path'] + "')";

@@ -1,0 +1,37 @@
+<div class="container-class">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-3">
+                    <img [src]="getImagePath()">
+                </div>
+                <div class="col-9">
+                    <p>{{user?.name}}</p>
+                    <p><span *ngFor="let data of user?.also_known_as"> {{data}} </span></p>
+                    <p>{{user?.biography}}</p>
+                    <p>{{user?.birthday}}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- 
+
+adult: false
+also_known_as: (3) ["Richard A. Wolf", "Richard A. Wolf ", "Richard Wolf"]
+biography: "From Wikipedia, the free encyclopedia.↵↵Richard Anthony "Dick" Wolf (born December 20, 1946) is an Americantelevision producer, specializing in crime dramas such as Miami Vice and the Law &amp; Order franchise. Throughout his career he has won several awards including an Emmy Award and a star on the Hollywood Walk of Fame.  Wolf has also authored three books. The first, Law &amp; Order: Crime Scenes is a nonfiction companion to the Law &amp; Order series.↵↵The Intercept and The Execution are the first volumes in a new thriller series with N.Y.P.D. special agent Jeremy Fisk."
+birthday: "1946-12-20"
+deathday: null
+gender: 2
+homepage: null
+id: 117443
+imdb_id: "nm0937725"
+known_for_department: "Creator"
+name: "Dick Wolf"
+place_of_birth: "New York City - New York - USA"
+popularity: 2.07
+profile_path: null -->

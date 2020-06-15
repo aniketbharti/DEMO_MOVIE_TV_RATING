@@ -28,6 +28,7 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
 import { UserDataService } from './services/user.data.service';
 import { MyRatedMoviesListComponent } from './screens/my-rated-movies-list/my-rated-movies-list.component';
 import { AuthGuard } from './gaurds/auth.guard';
+import { PersonPageDetailsComponent } from './screens/person-page-details/person-page-details.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AuthGuard } from './gaurds/auth.guard';
     MoviesCardComponent,
     TrimLengthPipe,
     LoginModalComponent,
-    MyRatedMoviesListComponent
+    MyRatedMoviesListComponent,
+    PersonPageDetailsComponent
   ],
   imports: [
     BrowserModule,

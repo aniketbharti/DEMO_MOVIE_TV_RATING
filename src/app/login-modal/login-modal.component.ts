@@ -32,6 +32,8 @@ export class LoginModalComponent implements OnInit {
       ]],
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
+    this.logInForm.get('email').patchValue('aniketvrm183@gmail.com')
+    this.logInForm.get('password').patchValue('123456789')
 
   }
 

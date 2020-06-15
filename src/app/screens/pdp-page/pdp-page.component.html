@@ -59,6 +59,13 @@
                     </div>
                 </div>
             </form>
+            <ng-container *ngIf="createdBy.length > 0">
+                <app-corousel-grid [moviesList]="createdBy">
+                    <div>
+                        <h5 class="msg-class">Cast</h5>
+                    </div>
+                </app-corousel-grid>
+            </ng-container>
             <ng-container *ngIf="recommendeArray.length > 0">
                 <app-corousel-grid [moviesList]="recommendeArray">
                     <div>

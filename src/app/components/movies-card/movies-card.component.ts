@@ -15,8 +15,11 @@ export class MoviesCardComponent implements OnInit {
   }
 
   navigationToPDP(id, media_type) {
-    console.log(media_type, "hhhh")
-    this.router.navigate(['movie-description'], { queryParams: { id: id, media_type: media_type } })
+    if(!("personPageNavigation" in this.cardData)){
+      this.router.navigate(['movie-description'], { queryParams: { id: id, media_type: media_type } })
+    }else{
+      this.router.navigate(['person-details'], { queryParams: { id: id}})
+    }
   }
 
   

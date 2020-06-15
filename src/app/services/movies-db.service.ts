@@ -99,5 +99,10 @@ export class MoviesDbService {
     return this.httpService.getMethod(url)
   }
 
+
+  getPeopleDetail(id){
+    let url = environment.peopleDetail.replace('{parameter1}', `${id}`)
+    return this.httpService.getMethod(url)
+  }
 }
 

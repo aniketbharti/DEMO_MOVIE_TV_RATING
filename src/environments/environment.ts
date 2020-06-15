@@ -15,9 +15,12 @@ const appName = {
   createSession: 'authentication/session/new?api_key=',
   logOut: 'authentication/session?api_key=',
   myRated: 'account/{account_id}/rated/{parameter2}?api_key=',
-  reviewState: '{parameter1}/{parameter2}/account_states?api_key='
-
+  reviewState: '{parameter1}/{parameter2}/account_states?api_key=',
+  peopleDetailsApp: 'person/{parameter1}?api_key='
 }
+
+
+
 export const imageURLHD = 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/'
 export const imageURL = 'https://image.tmdb.org/t/p/w220_and_h330_face'
 
@@ -36,6 +39,7 @@ export const environment = {
   createSession: domainURL + appName.createSession + apiKey,
   logOut: domainURL + appName.logOut + apiKey,
   myRated:  domainURL + appName.myRated + apiKey,
-  reviewState: domainURL + appName.reviewState + apiKey
-
+  reviewState: domainURL + appName.reviewState + apiKey,
+  peopleDetail: domainURL + appName.peopleDetailsApp + apiKey
 };
+

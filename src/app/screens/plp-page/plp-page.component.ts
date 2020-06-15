@@ -28,6 +28,9 @@ export class PlpPageComponent implements OnInit {
 
   ngOnInit() {
     this.searchText = this.activateRoute.snapshot.queryParams.search;
+    if(!(this.searchText)){
+      this.router.navigate([''])
+    }
     this.search('multi');
     this.search('movie');
     this.search('tv');
